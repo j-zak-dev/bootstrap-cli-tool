@@ -27,7 +27,7 @@ var createGitignoreCmd = &cobra.Command{
 			return
 		}
 
-		if len(excludeFile) > 0 {
+		if excludeFile != "" {
 			excludeFileContents, err := os.Open(excludeFile)
 
 			if err != nil {
@@ -41,9 +41,10 @@ var createGitignoreCmd = &cobra.Command{
 			}
 
 			defer excludeFileContents.Close()
-			defer gitFile.Close()
-			fmt.Println("Created a " + gitFile.Name() + " file")
 		}
+
+		defer gitFile.Close()
+		fmt.Println("Created a " + gitFile.Name() + " file")
 	},
 }
 
