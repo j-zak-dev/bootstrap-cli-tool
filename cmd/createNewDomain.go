@@ -57,7 +57,7 @@ func init() {
 		&useDDD,
 		"useDDD",
 		"d",
-		true,
+		false,
 		"Set the autogenerate for the domain to DDD style",
 	)
 
