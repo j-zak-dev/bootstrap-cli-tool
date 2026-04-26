@@ -12,22 +12,13 @@ import (
 )
 
 // createGitignoreCmd represents the createGitignore command
-var excludeFile string
+var excludeFile = ""
 var createGitignoreCmd = &cobra.Command{
 	Use:     "createGitignore",
 	Short:   "Create a new .gitignore file",
 	Long:    `Create a new .gitignore file with the option to pass in a file path with a pre-configured template for the .gitignore file.`,
 	Aliases: []string{"c-gi"},
 	Run: func(cmd *cobra.Command, args []string) {
-
-		excludeFileContents, err := os.Open(excludeFile)
-
-		if err != nil {
-			fmt.Println("An error has occurred with reading" + excludeFile)
-			return
-		}
-
-		defer excludeFileContents.Close()
 
 		gitFile, err := os.Create(".gitignore")
 
@@ -36,15 +27,23 @@ var createGitignoreCmd = &cobra.Command{
 			return
 		}
 
-		defer gitFile.Close()
+		if len(excludeFile) > 0 {
+			excludeFileContents, err := os.Open(excludeFile)
 
-		_, err = io.Copy(gitFile, excludeFileContents)
-		if err != nil {
-			fmt.Println("An error occurred when copying file contents to new file")
+			if err != nil {
+				fmt.Println("An error has occurred with reading" + excludeFile)
+				return
+			}
+
+			_, err = io.Copy(gitFile, excludeFileContents)
+			if err != nil {
+				fmt.Println("An error occurred when copying file contents to new file")
+			}
+
+			defer excludeFileContents.Close()
+			defer gitFile.Close()
+			fmt.Println("Created a " + gitFile.Name() + " file")
 		}
-
-		fmt.Println("Created a " + gitFile.Name() + " file")
-
 	},
 }
 
