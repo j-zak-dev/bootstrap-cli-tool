@@ -1,0 +1,6 @@
+entrypointLayer: "entrypoints"
+elements:
+  - "mappers"
+  - "routers"
+  - "api"
+  - "dto"

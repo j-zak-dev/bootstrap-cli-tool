@@ -36,9 +36,6 @@ var createNewDomainCmd = &cobra.Command{
 		} else {
 
 			utils.CreateDomain(name)
-			utils.CreateApplication(name)
-			utils.CreateInfrastructure(name)
-			utils.CreateEntrypoints(name)
 			fmt.Println("Created new custom domain with DDD config: " + name)
 
 		}

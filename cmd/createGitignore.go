@@ -54,7 +54,7 @@ func init() {
 		&excludeFile,
 		"file", // long flag: --file
 		"f",    // short flag: -f
-		"",     // default value
+		"/configs/gitignore-configs/gitignoreTemplate.txt", // default value
 		"input file path",
 	)
 

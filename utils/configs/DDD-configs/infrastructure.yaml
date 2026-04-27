@@ -1,0 +1,7 @@
+infrastructureLayer: "infrastructure"
+elements:
+  - "services"
+  - "interfaces"
+  - "repositories"
+  - "mappers"
+  - "dto"
