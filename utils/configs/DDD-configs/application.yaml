@@ -1,6 +1,0 @@
-applicationLayer: "application"
-elements:
-  - "dtos"
-  - "interfaces"
-  - "services"
-  - "mappers"

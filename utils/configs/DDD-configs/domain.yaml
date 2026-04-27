@@ -1,6 +1,0 @@
-domainLayer: "domain"
-elements:
-  - "services"
-  - "interfaces"
-  - "aggregates"
-  - "value-objects"
