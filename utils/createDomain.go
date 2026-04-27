@@ -1,37 +1,22 @@
 package utils
 
 import (
-	"fmt"
+	_ "embed"
+
+	"github.com/spf13/bct/utils/services/builders"
+	"github.com/spf13/bct/utils/services/loaders"
+	"github.com/spf13/bct/utils/services/writers"
 )
 
-func CreateDomain(path string) error {
+func CreateDomain(name string) error {
+	var yaml = loaders.LoadDomainYaml()
 
-	var domainLayer = path + "/domain"
-	var layerServices = "/services"
-	var layerInterfaces = "/interfaces"
-	var layerAggregates = "/aggregates"
-	var layerVObjects = "/value-objects"
+	var cfg, cfgErr = builders.BuildYamlConfig(yaml)
+	if cfgErr != nil {
+		panic(cfgErr)
+	}
 
-	serviceError := CreateDir((domainLayer + layerServices))
-	if serviceError != nil {
-		fmt.Println("Error creating layer: " + domainLayer + layerServices)
-		return serviceError
-	}
-	vObjectError := CreateDir((domainLayer + layerVObjects))
-	if vObjectError != nil {
-		fmt.Println("Error creating layer: " + domainLayer + layerVObjects)
-		return vObjectError
-	}
-	aggregateError := CreateDir((domainLayer + layerAggregates))
-	if aggregateError != nil {
-		fmt.Println("Error creating layer: " + domainLayer + layerAggregates)
-		return aggregateError
-	}
-	interfaceError := CreateDir((domainLayer + layerInterfaces))
-	if interfaceError != nil {
-		fmt.Println("Error creating layer: " + domainLayer + layerInterfaces)
-		return interfaceError
-	}
+	writers.WriteLayer(name, cfg)
 
 	return nil
 }

@@ -1,0 +1,32 @@
+application:
+  layer: application
+  elements:
+    - dtos
+    - interfaces
+    - services
+    - mappers
+
+domain:
+  layer: domain
+  elements:
+    - services
+    - interfaces
+    - aggregates
+    - value-objects
+
+entrypoints:
+  layer: entrypoints
+  elements:
+    - mappers
+    - routers
+    - api
+    - dto
+
+infrastructure:
+  layer: infrastructure
+  elements:
+    - services
+    - interfaces
+    - repositories
+    - mappers
+    - dto

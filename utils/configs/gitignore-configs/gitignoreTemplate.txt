@@ -1,0 +1,5 @@
+testFolder/
+.env
+/venv
+.venv
+venv/*
